@@ -113,49 +113,46 @@ a{color:inherit}
   .nav__email{display:none}
 }
 
-/* ---------- Theme Toggle Button ---------- */
-/* Стили для кнопки переключения темы */
+/* ---------- Theme Toggle Button (Ἥλιος / Σελήνη) ---------- */
+/* Кнопка темы в футере: солнце — Вергинская звезда (Гелиос), луна — полумесяц Селены.
+   Кнопка показывает тему, НА которую переключит. */
 .theme-toggle-button {
-  /* Позиционирование для футера */
-  position: relative; /* Для корректного использования margin-left: auto */
-  margin-left: auto; /* Отодвигаем кнопку вправо в футере */
-  margin-right: 10px; /* Небольшой отступ справа */
-  
   background: none;
-  border: none;
+  border: 1px solid transparent;
   cursor: pointer;
-  padding: 8px;
-  font-size: 24px; /* Размер иконок */
-  display: flex;
+  padding: 6px 14px;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  color: var(--color-ink-black); /* Цвет иконки в светлой теме */
-  transition: color 0.3s ease, background-color 0.3s ease; /* Плавный переход */
-  border-radius: 8px;
-  z-index: 1; /* Стандартный z-index для элемента футера */
+  border-radius: var(--radius-buttons);
+  color: var(--color-slate-gray);
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
-
-/* Цвет кнопки в темной теме */
-body.dark-mode .theme-toggle-button {
-  color: var(--color-paper-white);
-}
-/* Эффект при наведении */
 .theme-toggle-button:hover {
-  background-color: rgba(0,0,0,0.1);
+  color: var(--color-ink-black);
+  border-color: var(--border-hairline);
 }
-body.dark-mode .theme-toggle-button:hover {
-  background-color: rgba(255,255,255,0.1);
+.theme-set {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
-
-/* SVG иконки для солнца и луны */
-.theme-icon {
-  width: 1em;
-  height: 1em;
-  stroke: currentColor; /* Цвет иконки наследуется от цвета кнопки */
-  stroke-width: 2;
+.theme-word {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1;
+}
+.theme-glyph {
+  width: 20px;
+  height: 20px;
+  display: block;
+  stroke: currentColor;
   fill: none;
 }
-/* Иконки будут скрываться/показываться через JS */
+/* Светлая тема: предлагаем Селену; тёмная: предлагаем Гелиоса */
+.theme-set--helios { display: none; }
+body.dark-mode .theme-set--helios { display: inline-flex; }
+body.dark-mode .theme-set--selene { display: none; }
 
 
 /* ---------- Hero ---------- */
@@ -535,16 +532,35 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleButton.classList.add('theme-toggle-button'); // Class for styling
     toggleButton.setAttribute('aria-label', 'Сменить тему');
 
-    // SVG иконки для Солнца и Луны
-    const sunIcon = `
-        <svg class="theme-icon theme-icon--sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+    // Гелиос — Вергинская звезда (16-лучевое солнце Македонии), знак светлой темы
+    const heliosSet = `
+        <span class="theme-set theme-set--helios">
+          <svg class="theme-glyph" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/>
+            <line x1="16.6" y1="12" x2="22.5" y2="12"/><line x1="15.25" y1="15.25" x2="19.42" y2="19.42"/>
+            <line x1="12" y1="16.6" x2="12" y2="22.5"/><line x1="8.75" y1="15.25" x2="4.58" y2="19.42"/>
+            <line x1="7.4" y1="12" x2="1.5" y2="12"/><line x1="8.75" y1="8.75" x2="4.58" y2="4.58"/>
+            <line x1="12" y1="7.4" x2="12" y2="1.5"/><line x1="15.25" y1="8.75" x2="19.42" y2="4.58"/>
+            <line x1="16.25" y1="13.76" x2="19.39" y2="15.06"/><line x1="13.76" y1="16.25" x2="15.06" y2="19.39"/>
+            <line x1="10.24" y1="16.25" x2="8.94" y2="19.39"/><line x1="7.75" y1="13.76" x2="4.61" y2="15.06"/>
+            <line x1="7.75" y1="10.24" x2="4.61" y2="8.94"/><line x1="10.24" y1="7.75" x2="8.94" y2="4.61"/>
+            <line x1="13.76" y1="7.75" x2="15.06" y2="4.61"/><line x1="16.25" y1="10.24" x2="19.39" y2="8.94"/>
+          </svg>
+          <span class="theme-word" lang="grc">Ἥλιος</span>
+        </span>
     `;
-    const moonIcon = `
-        <svg class="theme-icon theme-icon--moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-9 9c-4.81 0-8.81-3.72-9-8.47a8.95 8.95 0 0 1 8.47-9C7.77 2.01 4 6.01 4 12h0z"></path></svg>
+    // Селена — полумесяц, знак тёмной темы
+    const seleneSet = `
+        <span class="theme-set theme-set--selene">
+          <svg class="theme-glyph" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <span class="theme-word" lang="grc">Σελήνη</span>
+        </span>
     `;
 
-    // Вставляем иконки в кнопку
-    toggleButton.innerHTML = sunIcon + moonIcon;
+    // Кнопка показывает тему, НА которую переключит (в светлой — Селену, в тёмной — Гелиоса)
+    toggleButton.innerHTML = heliosSet + seleneSet;
     // Добавляем кнопку в конец футера
     document.querySelector('footer').appendChild(toggleButton);
 
@@ -553,19 +569,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)'); // Проверяем системные настройки
 
     // Функция для применения выбранного режима
+    // Видимость Гелиоса/Селены переключается через CSS по классу body.dark-mode
     const applyMode = (mode) => {
         if (mode === 'dark') {
-            body.classList.add('dark-mode'); // Добавляем класс для темной темы
-            localStorage.setItem('theme-mode', 'dark'); // Сохраняем выбор
-            // Показываем иконку солнца, скрываем луну
-            document.querySelector('.theme-icon--sun').style.display = 'none';
-            document.querySelector('.theme-icon--moon').style.display = 'block';
+            body.classList.add('dark-mode');
+            localStorage.setItem('theme-mode', 'dark');
+            toggleButton.setAttribute('aria-label', 'Переключить на светлую тему (Ἥλιος)');
         } else {
-            body.classList.remove('dark-mode'); // Убираем класс темной темы
-            localStorage.setItem('theme-mode', 'light'); // Сохраняем выбор
-            // Показываем иконку луны, скрываем солнце
-            document.querySelector('.theme-icon--moon').style.display = 'none';
-            document.querySelector('.theme-icon--sun').style.display = 'block';
+            body.classList.remove('dark-mode');
+            localStorage.setItem('theme-mode', 'light');
+            toggleButton.setAttribute('aria-label', 'Переключить на тёмную тему (Σελήνη)');
         }
     };
 
