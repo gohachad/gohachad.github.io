@@ -38,6 +38,24 @@
   --page-max:1200px;
   --section-gap:80px;
 }
+
+/* ---------- Dark Mode Variables ---------- */
+/* Добавлены новые переменные для темной темы */
+body.dark-mode {
+  --color-ink-black:#ffffff; /* Текст становится белым */
+  --color-paper-white:#17191c; /* Фон становится темным */
+  --color-mist-gray:#242628; /* Серые элементы становятся темнее */
+  --color-fog-white:#1e2022; /* Светлые фоны тоже темнее */
+  --color-slate-gray:#a3a6af; /* Серые тексты становятся светлее */
+  --color-ash-gray:#979799;   /* Другие оттенки серого */
+  --color-smoke-gray:#777b86; /* Ещё оттенки серого */
+  --color-sienna-brown:#fbe1d1; /* Коричневый цвет акцентов становится светлее */
+  --color-blush-peach:#2b201a; /* Фон акцентной карточки: тёплый тёмный, чтобы peach-текст читался */
+  --border-hairline:#333537; /* Границы становятся темнее */
+}
+/* В тёмной теме линия графика перекрашивается в светлый акцент */
+body.dark-mode .stat__chart path{stroke:var(--color-sienna-brown)}
+
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){
@@ -52,6 +70,8 @@ body{
   color:var(--color-ink-black);
   background:var(--color-paper-white);
   -webkit-font-smoothing:antialiased;
+  /* Smooth transition for background and text color */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 .container{max-width:var(--page-max);margin:0 auto;padding:0 24px}
 a{color:inherit}
@@ -92,6 +112,51 @@ a{color:inherit}
   .nav__links{display:none}
   .nav__email{display:none}
 }
+
+/* ---------- Theme Toggle Button ---------- */
+/* Стили для кнопки переключения темы */
+.theme-toggle-button {
+  /* Позиционирование для футера */
+  position: relative; /* Для корректного использования margin-left: auto */
+  margin-left: auto; /* Отодвигаем кнопку вправо в футере */
+  margin-right: 10px; /* Небольшой отступ справа */
+  
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  font-size: 24px; /* Размер иконок */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-ink-black); /* Цвет иконки в светлой теме */
+  transition: color 0.3s ease, background-color 0.3s ease; /* Плавный переход */
+  border-radius: 8px;
+  z-index: 1; /* Стандартный z-index для элемента футера */
+}
+
+/* Цвет кнопки в темной теме */
+body.dark-mode .theme-toggle-button {
+  color: var(--color-paper-white);
+}
+/* Эффект при наведении */
+.theme-toggle-button:hover {
+  background-color: rgba(0,0,0,0.1);
+}
+body.dark-mode .theme-toggle-button:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+/* SVG иконки для солнца и луны */
+.theme-icon {
+  width: 1em;
+  height: 1em;
+  stroke: currentColor; /* Цвет иконки наследуется от цвета кнопки */
+  stroke-width: 2;
+  fill: none;
+}
+/* Иконки будут скрываться/показываться через JS */
+
 
 /* ---------- Hero ---------- */
 .hero{position:relative;padding:96px 0 128px}
@@ -265,6 +330,7 @@ a{color:inherit}
   padding:40px 0 48px;
   font-size:15px;color:var(--color-slate-gray);
   display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  align-items: center; /* Vertically align footer content */
 }
 .footer a{text-decoration:none}
 .footer a:hover{text-decoration:underline}
@@ -274,6 +340,7 @@ a{color:inherit}
 
 <header class="container">
   <nav class="nav" aria-label="Основная навигация">
+    <!-- Кнопка переключения темы будет добавлена в футер -->
     <a class="nav__logo" href="#">gohachad</a>
     <ul class="nav__links">
       <li><a href="#services">Услуги</a></li>
@@ -375,7 +442,7 @@ a{color:inherit}
         <article class="card">
           <p class="card__tag">Каналы</p>
           <h3 class="card__title">Telegram-ассистенты</h3>
-          <p class="card__body">Бот с памятью и характером: понимает голосовые, отвечает текстом или голосом.
+          <p class="card__body">Бот с памятью и характером: понимает голосовые сообщения и отвечает текстом или голосом.
             <span>Один агент — в Telegram, WhatsApp и на сайте.</span></p>
         </article>
 
@@ -446,7 +513,7 @@ a{color:inherit}
       <p class="section__sub">Опишите задачу своими словами — отвечу, можно ли её отдать агенту,
         сколько это займёт и что для этого нужно.</p>
       <div class="contact__actions">
-        <a class="pill pill--filled" href="https://t.me/gohachad">Написать в Telegram</a>
+        <a class="pill pill--filled" href="https://t.me/gohachad">Обсудить задачу</a>
         <a class="pill pill--ghost" href="mailto:gchad5307@gmail.com">Написать на почту</a>
       </div>
       <p class="contact__email">или напрямую: <a href="mailto:gchad5307@gmail.com">gchad5307@gmail.com</a></p>
@@ -457,7 +524,67 @@ a{color:inherit}
 <footer class="container footer">
   <span>© 2026 gohachad · AI-агенты для малого бизнеса</span>
   <span><a href="https://t.me/gohachad">Telegram</a> · <a href="mailto:gchad5307@gmail.com">Email</a></span>
+  <!-- Кнопка переключения темы добавлена сюда -->
 </footer>
 
+<!-- Скрипт для переключения темы -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Создаем кнопку переключения темы
+    const toggleButton = document.createElement('button');
+    toggleButton.classList.add('theme-toggle-button'); // Class for styling
+    toggleButton.setAttribute('aria-label', 'Сменить тему');
+
+    // SVG иконки для Солнца и Луны
+    const sunIcon = `
+        <svg class="theme-icon theme-icon--sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+    `;
+    const moonIcon = `
+        <svg class="theme-icon theme-icon--moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-9 9c-4.81 0-8.81-3.72-9-8.47a8.95 8.95 0 0 1 8.47-9C7.77 2.01 4 6.01 4 12h0z"></path></svg>
+    `;
+
+    // Вставляем иконки в кнопку
+    toggleButton.innerHTML = sunIcon + moonIcon;
+    // Добавляем кнопку в конец футера
+    document.querySelector('footer').appendChild(toggleButton);
+
+    const body = document.body;
+    const savedMode = localStorage.getItem('theme-mode'); // Пытаемся получить сохраненный режим
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)'); // Проверяем системные настройки
+
+    // Функция для применения выбранного режима
+    const applyMode = (mode) => {
+        if (mode === 'dark') {
+            body.classList.add('dark-mode'); // Добавляем класс для темной темы
+            localStorage.setItem('theme-mode', 'dark'); // Сохраняем выбор
+            // Показываем иконку солнца, скрываем луну
+            document.querySelector('.theme-icon--sun').style.display = 'none';
+            document.querySelector('.theme-icon--moon').style.display = 'block';
+        } else {
+            body.classList.remove('dark-mode'); // Убираем класс темной темы
+            localStorage.setItem('theme-mode', 'light'); // Сохраняем выбор
+            // Показываем иконку луны, скрываем солнце
+            document.querySelector('.theme-icon--moon').style.display = 'none';
+            document.querySelector('.theme-icon--sun').style.display = 'block';
+        }
+    };
+
+    // Устанавливаем начальный режим при загрузке страницы
+    if (savedMode) {
+        applyMode(savedMode); // Используем сохраненный режим, если он есть
+    } else if (prefersDarkScheme.matches) {
+        applyMode('dark'); // Используем системные настройки, если они темные
+    } else {
+        applyMode('light'); // По умолчанию светлая тема
+    }
+
+    // Обработчик события клика по кнопке
+    toggleButton.addEventListener('click', () => {
+        // Определяем новый режим
+        const newMode = body.classList.contains('dark-mode') ? 'light' : 'dark';
+        applyMode(newMode); // Применяем новый режим
+    });
+});
+</script>
 </body>
 </html>
