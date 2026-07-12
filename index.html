@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>gohachad — AI-агенты для продаж и переговоров</title>
+<meta name="description" content="Строю AI-агентов для малого бизнеса: продажи, переговоры, Telegram-ассистенты с голосом и памятью. Настройка под ваши процессы и запуск за дни.">
+<meta property="og:title" content="gohachad — AI-агенты для продаж и переговоров">
+<meta property="og:description" content="AI-агенты для малого бизнеса: продажи, переговоры, Telegram-ассистенты с голосом и памятью.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23fbe1d1'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%2317191c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&family=Inter:wght@400..500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --color-ink-black:#17191c;
+  --color-paper-white:#ffffff;
+  --color-mist-gray:#f2f2f3;
+  --color-fog-white:#fafafb;
+  --color-slate-gray:#777b86;
+  --color-ash-gray:#979799;
+  --color-smoke-gray:#a3a6af;
+  --color-blush-peach:#fbe1d1;
+  --color-sienna-brown:#5d2a1a;
+  --border-hairline:#ececec;
+
+  --font-serif:'Source Serif 4',ui-serif,Georgia,serif;
+  --font-sans:'Inter',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+
+  --radius-cards:24px;
+  --radius-inputs:16px;
+  --radius-buttons:9999px;
+  --radius-elevated:20px;
+
+  --shadow-artifact:0 0 0 1px rgba(4,23,43,.05),0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);
+
+  --page-max:1200px;
+  --section-gap:80px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+body{
+  font-family:var(--font-sans);
+  font-weight:400;
+  font-size:17px;
+  line-height:1.35;
+  color:var(--color-ink-black);
+  background:var(--color-paper-white);
+  -webkit-font-smoothing:antialiased;
+}
+.container{max-width:var(--page-max);margin:0 auto;padding:0 24px}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--color-ink-black);outline-offset:3px;border-radius:4px}
+
+/* ---------- Buttons ---------- */
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  border-radius:var(--radius-buttons);
+  padding:12px 20px;
+  font-family:var(--font-sans);font-size:16px;font-weight:400;
+  text-decoration:none;cursor:pointer;border:1px solid transparent;
+  transition:opacity .15s ease;
+}
+.pill--filled{background:var(--color-ink-black);color:var(--color-paper-white)}
+.pill--filled:hover{opacity:.85}
+.pill--ghost{background:transparent;color:var(--color-ink-black);border-color:var(--color-ink-black)}
+.pill--ghost:hover{background:var(--color-mist-gray)}
+.arrow-link{
+  font-size:16px;color:var(--color-ink-black);text-decoration:none;
+}
+.arrow-link:hover{text-decoration:underline}
+
+/* ---------- Nav ---------- */
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:28px 0;
+}
+.nav__logo{
+  font-family:var(--font-serif);font-size:22px;font-style:italic;
+  text-decoration:none;letter-spacing:-.2px;
+}
+.nav__links{display:flex;gap:32px;list-style:none}
+.nav__links a{font-size:16px;text-decoration:none;padding:2px 0}
+.nav__links a:hover{color:var(--color-slate-gray)}
+.nav__cta{display:flex;align-items:center;gap:20px}
+@media (max-width:760px){
+  .nav__links{display:none}
+  .nav__email{display:none}
+}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;padding:96px 0 128px}
+.hero__inner{max-width:760px;margin:0 auto;text-align:center;position:relative;z-index:2}
+.hero h1{
+  font-family:var(--font-serif);font-weight:400;
+  font-size:clamp(44px,7.5vw,90px);
+  line-height:1.15;
+  letter-spacing:clamp(-2.25px,-.025em,-.66px);
+}
+.hero h1 em{font-style:italic}
+.hero__sub{
+  margin:28px auto 0;max-width:560px;
+  font-size:17px;line-height:1.5;color:var(--color-slate-gray);
+  font-weight:430;
+}
+.hero__actions{margin-top:40px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* Floating artifacts */
+.artifact{
+  background:var(--color-paper-white);
+  border-radius:var(--radius-elevated);
+  box-shadow:var(--shadow-artifact);
+  padding:16px 20px 14px;
+  text-align:left;
+  width:280px;
+}
+.artifact--abs{position:absolute;z-index:1}
+.artifact--chat{top:24px;left:calc(50% - 620px)}
+.artifact--stat{top:64px;right:calc(50% - 620px)}
+.artifact--voice{bottom:40px;left:calc(50% - 560px);width:250px}
+.artifact--composer{bottom:-16px;right:calc(50% - 580px);width:320px}
+@media (max-width:1240px){
+  .hero{padding-bottom:64px}
+  .artifact--abs{position:static}
+  .hero__artifacts{
+    display:flex;flex-wrap:wrap;gap:20px;justify-content:center;
+    margin-top:64px;
+  }
+}
+@media (min-width:1241px){
+  .hero{padding-top:124px;padding-bottom:160px}
+  .hero__artifacts{display:contents}
+}
+
+.artifact__meta{
+  display:flex;align-items:center;gap:10px;margin-bottom:12px;
+  font-size:14px;color:var(--color-ash-gray);
+}
+.avatar{
+  width:32px;height:32px;border-radius:9999px;flex:none;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:500;color:var(--color-ink-black);
+}
+.avatar--green{background:#dcefdc}
+.avatar--blue{background:#dce7f5}
+.artifact__meta time{margin-left:auto}
+.bubble{
+  border-radius:12px;padding:10px 12px;font-size:14px;line-height:1.45;
+  margin-bottom:8px;
+}
+.bubble--client{background:var(--color-mist-gray)}
+.bubble--agent{background:var(--color-fog-white);border:1px solid var(--border-hairline)}
+.artifact__note{font-size:13px;color:var(--color-smoke-gray);margin-top:6px}
+
+.stat__label{font-size:14px;color:var(--color-slate-gray)}
+.stat__value{font-size:26px;font-weight:500;letter-spacing:-.23px;margin-top:4px}
+.stat__delta{font-size:14px;color:var(--color-slate-gray);margin-top:2px}
+.stat__chart{margin-top:12px;display:block;width:100%}
+
+.voice__row{display:flex;align-items:center;gap:12px}
+.voice__play{
+  width:36px;height:36px;border-radius:9999px;background:var(--color-ink-black);
+  color:var(--color-paper-white);display:inline-flex;align-items:center;justify-content:center;
+  flex:none;font-size:12px;
+}
+.voice__bars{display:flex;align-items:center;gap:2px;height:24px;flex:1}
+.voice__bars span{width:3px;border-radius:2px;background:var(--color-smoke-gray)}
+.voice__dur{font-size:14px;color:var(--color-ash-gray)}
+
+.composer{display:flex;align-items:center;gap:12px}
+.composer__field{
+  flex:1;display:flex;align-items:center;gap:10px;
+  border:1px solid var(--border-hairline);border-radius:var(--radius-inputs);
+  padding:12px 14px;color:var(--color-smoke-gray);font-size:16px;
+}
+.composer__send{
+  width:40px;height:40px;border-radius:9999px;background:var(--color-ink-black);
+  color:var(--color-paper-white);display:inline-flex;align-items:center;justify-content:center;
+  flex:none;
+}
+
+/* ---------- Sections ---------- */
+.section{padding:var(--section-gap) 0}
+.section--fog{background:var(--color-fog-white)}
+.section h2{
+  font-family:var(--font-serif);font-weight:400;
+  font-size:clamp(36px,4.8vw,64px);
+  line-height:1.2;letter-spacing:-.96px;
+}
+.section__sub{
+  margin-top:16px;max-width:520px;
+  font-size:18px;font-weight:430;line-height:1.5;color:var(--color-slate-gray);
+  letter-spacing:-.16px;
+}
+
+/* Services */
+.cards{
+  margin-top:56px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+@media (max-width:980px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.cards{grid-template-columns:1fr}}
+.card{
+  background:var(--color-mist-gray);
+  border-radius:var(--radius-cards);
+  padding:32px 24px;
+  display:flex;flex-direction:column;gap:12px;
+}
+.card__tag{font-size:14px;color:var(--color-ash-gray)}
+.card__title{font-size:20px;font-weight:500;letter-spacing:-.1px}
+.card__body{font-size:16px;line-height:1.5;color:var(--color-ink-black);font-weight:400}
+.card__body span{color:var(--color-slate-gray)}
+
+/* Peach accent */
+.accent-card{
+  background:var(--color-blush-peach);
+  color:var(--color-sienna-brown);
+  border-radius:var(--radius-cards);
+  padding:64px 40px;
+  text-align:center;
+}
+.accent-card p{
+  font-family:var(--font-serif);font-weight:400;font-style:italic;
+  font-size:clamp(24px,3.2vw,36px);line-height:1.35;letter-spacing:-.4px;
+  max-width:720px;margin:0 auto;
+}
+.accent-card cite{
+  display:block;margin-top:20px;font-family:var(--font-sans);
+  font-style:normal;font-size:14px;font-weight:450;
+}
+
+/* Projects */
+.projects{margin-top:56px;display:grid;grid-template-columns:1.2fr .8fr;gap:24px}
+@media (max-width:860px){.projects{grid-template-columns:1fr}}
+.project{
+  background:var(--color-mist-gray);border-radius:var(--radius-cards);
+  padding:40px 32px;display:flex;flex-direction:column;gap:14px;
+}
+.project__status{font-size:14px;color:var(--color-ash-gray)}
+.project__title{font-size:26px;font-weight:480;letter-spacing:-.23px}
+.project__body{font-size:16px;line-height:1.5}
+.project__stack{font-size:14px;color:var(--color-slate-gray);margin-top:auto;padding-top:12px}
+.project--empty{
+  background:transparent;border:1px solid var(--border-hairline);
+  justify-content:center;text-align:center;color:var(--color-slate-gray);
+}
+.project--empty .project__body{max-width:300px;margin:0 auto}
+
+/* Contact */
+.contact{text-align:center}
+.contact h2{margin-bottom:0}
+.contact .section__sub{margin-left:auto;margin-right:auto}
+.contact__actions{margin-top:40px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.contact__email{margin-top:24px;font-size:16px;color:var(--color-slate-gray)}
+.contact__email a{color:var(--color-ink-black);text-decoration:none}
+.contact__email a:hover{text-decoration:underline}
+
+/* Footer */
+.footer{
+  padding:40px 0 48px;
+  font-size:15px;color:var(--color-slate-gray);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+.footer a{text-decoration:none}
+.footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<header class="container">
+  <nav class="nav" aria-label="Основная навигация">
+    <a class="nav__logo" href="#">gohachad</a>
+    <ul class="nav__links">
+      <li><a href="#services">Услуги</a></li>
+      <li><a href="#projects">Проекты</a></li>
+      <li><a href="#contact">Контакты</a></li>
+    </ul>
+    <div class="nav__cta">
+      <a class="arrow-link nav__email" href="mailto:gchad5307@gmail.com">Email</a>
+      <a class="pill pill--filled" href="https://t.me/gohachad">Написать в Telegram</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- ================= HERO ================= -->
+  <section class="hero container" aria-label="Главный экран">
+    <div class="hero__inner">
+      <h1>Клиент написал в&nbsp;полночь. Агент <em>уже ответил</em>.</h1>
+      <p class="hero__sub">Я строю AI-агентов для малого бизнеса: продажи, переговоры и поддержка —
+        в&nbsp;Telegram и на сайте. Под ваши процессы, с&nbsp;голосом и памятью. Запуск за дни, а не месяцы.</p>
+      <div class="hero__actions">
+        <a class="pill pill--filled" href="https://t.me/gohachad">Обсудить задачу</a>
+        <a class="pill pill--ghost" href="#services">Смотреть услуги</a>
+      </div>
+    </div>
+
+    <div class="hero__artifacts">
+      <!-- Chat fragment -->
+      <div class="artifact artifact--abs artifact--chat" aria-hidden="true">
+        <div class="artifact__meta">
+          <span class="avatar avatar--green">ИК</span>
+          <span>Клиент</span>
+          <time>00:14</time>
+        </div>
+        <p class="bubble bubble--client">А можно доставку завтра к 9:00?</p>
+        <p class="bubble bubble--agent">Да, завтра к 9:00 свободно. Оформить на адрес из прошлого заказа?</p>
+        <p class="artifact__note">Агент · ответ за 40 секунд</p>
+      </div>
+
+      <!-- Stat card -->
+      <div class="artifact artifact--abs artifact--stat" aria-hidden="true">
+        <p class="stat__label">Заявки за неделю</p>
+        <p class="stat__value">128</p>
+        <p class="stat__delta">↑ 3,2× после запуска агента</p>
+        <svg class="stat__chart" viewBox="0 0 240 64" fill="none">
+          <path d="M2 56 C 40 52, 70 48, 96 44 S 150 30, 180 22 S 220 10, 238 6"
+                stroke="#5d2a1a" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <!-- Voice note -->
+      <div class="artifact artifact--abs artifact--voice" aria-hidden="true">
+        <div class="voice__row">
+          <span class="voice__play">▶</span>
+          <span class="voice__bars">
+            <span style="height:8px"></span><span style="height:14px"></span><span style="height:20px"></span>
+            <span style="height:12px"></span><span style="height:18px"></span><span style="height:9px"></span>
+            <span style="height:16px"></span><span style="height:22px"></span><span style="height:11px"></span>
+            <span style="height:17px"></span><span style="height:8px"></span><span style="height:14px"></span>
+            <span style="height:19px"></span><span style="height:10px"></span><span style="height:15px"></span>
+          </span>
+          <span class="voice__dur">0:19</span>
+        </div>
+        <p class="artifact__note">Голосовое распознано → заявка в CRM</p>
+      </div>
+
+      <!-- Composer -->
+      <div class="artifact artifact--abs artifact--composer" aria-hidden="true">
+        <div class="composer">
+          <span class="composer__field">Спросите что-нибудь…</span>
+          <span class="composer__send">↑</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SERVICES ================= -->
+  <section class="section section--fog" id="services">
+    <div class="container">
+      <h2>Что я делаю</h2>
+      <p class="section__sub">Каждый агент собирается под конкретный процесс — не «чат-бот вообще»,
+        а сотрудник с одной понятной работой.</p>
+
+      <div class="cards">
+        <article class="card">
+          <p class="card__tag">Продажи</p>
+          <h3 class="card__title">AI-агент для продаж</h3>
+          <p class="card__body">Квалифицирует лиды, отвечает на вопросы о товаре и доводит до заявки.
+            <span>Работает круглосуточно, ни один запрос не остаётся без ответа.</span></p>
+        </article>
+
+        <article class="card">
+          <p class="card__tag">Переговоры</p>
+          <h3 class="card__title">Ассистент переговоров</h3>
+          <p class="card__body">Готовит к встрече: аргументы, сценарии, ответы на возражения.
+            <span>Разбирает записи прошедших звонков и подсказывает, что улучшить.</span></p>
+        </article>
+
+        <article class="card">
+          <p class="card__tag">Каналы</p>
+          <h3 class="card__title">Telegram-ассистенты</h3>
+          <p class="card__body">Бот с памятью и характером: понимает голосовые, отвечает текстом или голосом.
+            <span>Один агент — в Telegram, WhatsApp и на сайте.</span></p>
+        </article>
+
+        <article class="card">
+          <p class="card__tag">Операции</p>
+          <h3 class="card__title">Автоматизация рутины</h3>
+          <p class="card__body">Документы, отчёты, письма, заполнение CRM — то, что съедает часы каждую неделю.
+            <span>Агент делает это фоном, вы только проверяете.</span></p>
+        </article>
+
+        <article class="card">
+          <p class="card__tag">Голос</p>
+          <h3 class="card__title">Голосовые агенты</h3>
+          <p class="card__body">Распознавание и синтез речи: клиент говорит — агент понимает и отвечает голосом.
+            <span>Голосовые заметки превращаются в задачи и заявки.</span></p>
+        </article>
+
+        <article class="card">
+          <p class="card__tag">Внедрение</p>
+          <h3 class="card__title">Аудит и сопровождение</h3>
+          <p class="card__body">Разбираю ваши процессы, выбираю модели под бюджет, запускаю и обучаю команду.
+            <span>Дальше — поддержка и развитие агента по мере роста.</span></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ACCENT ================= -->
+  <section class="section">
+    <div class="container">
+      <div class="accent-card">
+        <p>Малому бизнесу не нужен отдел разработки, чтобы работать как большая компания.
+          Нужен один агент, собранный под ваши процессы.</p>
+        <cite>— принцип, с которого начинается каждый проект</cite>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROJECTS ================= -->
+  <section class="section section--fog" id="projects">
+    <div class="container">
+      <h2>Проекты</h2>
+      <p class="section__sub">Текущая работа и то, что уже запущено.</p>
+
+      <div class="projects">
+        <article class="project">
+          <p class="project__status">Текущий проект · в работе</p>
+          <h3 class="project__title">Джони — персональный AI-ассистент</h3>
+          <p class="project__body">Агент в Telegram, который живёт на собственном сервере: помнит контекст,
+            понимает голосовые сообщения и отвечает голосом по просьбе, выполняет задачи по расписанию
+            и работает с почтой и документами. Основа для клиентских решений — всё, что в услугах,
+            обкатано здесь.</p>
+          <p class="project__stack">Telegram · распознавание и синтез речи · память · автономные задачи</p>
+        </article>
+
+        <article class="project project--empty">
+          <p class="project__body">Здесь появятся кейсы клиентов по мере завершения.
+            Хотите посмотреть живое демо уже сейчас — напишите в Telegram.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <h2>Расскажите, что отнимает время</h2>
+      <p class="section__sub">Опишите задачу своими словами — отвечу, можно ли её отдать агенту,
+        сколько это займёт и что для этого нужно.</p>
+      <div class="contact__actions">
+        <a class="pill pill--filled" href="https://t.me/gohachad">Написать в Telegram</a>
+        <a class="pill pill--ghost" href="mailto:gchad5307@gmail.com">Написать на почту</a>
+      </div>
+      <p class="contact__email">или напрямую: <a href="mailto:gchad5307@gmail.com">gchad5307@gmail.com</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="container footer">
+  <span>© 2026 gohachad · AI-агенты для малого бизнеса</span>
+  <span><a href="https://t.me/gohachad">Telegram</a> · <a href="mailto:gchad5307@gmail.com">Email</a></span>
+</footer>
+
+</body>
+</html>
