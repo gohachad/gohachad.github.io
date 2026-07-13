@@ -181,22 +181,14 @@ body.dark-mode .theme-set--selene { display: none; }
   text-align:left;
   width:280px;
 }
-.artifact--abs{position:absolute;z-index:1}
-.artifact--chat{top:24px;left:calc(50% - 620px)}
-.artifact--stat{top:64px;right:calc(50% - 620px)}
-.artifact--voice{bottom:40px;left:calc(50% - 560px);width:250px}
-.artifact--composer{bottom:-16px;right:calc(50% - 580px);width:320px}
-@media (max-width:1240px){
-  .hero{padding-bottom:64px}
-  .artifact--abs{position:static}
-  .hero__artifacts{
-    display:flex;flex-wrap:wrap;gap:20px;justify-content:center;
-    margin-top:64px;
-  }
+.artifact--voice{width:250px}
+/* Cards sit in a centered row below the hero copy — no overlap with the headline at any width */
+.hero__artifacts{
+  display:flex;flex-wrap:wrap;gap:20px;justify-content:center;align-items:flex-start;
+  margin-top:56px;
 }
 @media (min-width:1241px){
-  .hero{padding-top:124px;padding-bottom:160px}
-  .hero__artifacts{display:contents}
+  .hero{padding-top:124px;padding-bottom:120px}
 }
 
 .artifact__meta{
@@ -367,7 +359,7 @@ body.dark-mode .theme-set--selene { display: none; }
 
     <div class="hero__artifacts">
       <!-- Chat fragment -->
-      <div class="artifact artifact--abs artifact--chat" aria-hidden="true">
+      <div class="artifact artifact--chat" aria-hidden="true">
         <div class="artifact__meta">
           <span class="avatar avatar--green">JD</span>
           <span>Customer</span>
@@ -378,19 +370,8 @@ body.dark-mode .theme-set--selene { display: none; }
         <p class="artifact__note">Agent · replied in 40 seconds</p>
       </div>
 
-      <!-- Stat card -->
-      <div class="artifact artifact--abs artifact--stat" aria-hidden="true">
-        <p class="stat__label">Leads this week</p>
-        <p class="stat__value">128</p>
-        <p class="stat__delta">↑ 3.2× since launching the agent</p>
-        <svg class="stat__chart" viewBox="0 0 240 64" fill="none">
-          <path d="M2 56 C 40 52, 70 48, 96 44 S 150 30, 180 22 S 220 10, 238 6"
-                stroke="#5d2a1a" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-      </div>
-
       <!-- Voice note -->
-      <div class="artifact artifact--abs artifact--voice" aria-hidden="true">
+      <div class="artifact artifact--voice" aria-hidden="true">
         <div class="voice__row">
           <span class="voice__play">▶</span>
           <span class="voice__bars">
@@ -403,14 +384,6 @@ body.dark-mode .theme-set--selene { display: none; }
           <span class="voice__dur">0:19</span>
         </div>
         <p class="artifact__note">Voice note transcribed → lead in CRM</p>
-      </div>
-
-      <!-- Composer -->
-      <div class="artifact artifact--abs artifact--composer" aria-hidden="true">
-        <div class="composer">
-          <span class="composer__field">Ask anything…</span>
-          <span class="composer__send">↑</span>
-        </div>
       </div>
     </div>
   </section>
