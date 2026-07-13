@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>gohachad — автоматизация и сайты для малого бизнеса</title>
-<meta name="description" content="Автоматизирую малый бизнес и собираю сайты под него: AI-агенты для продаж и переговоров, Telegram-ассистенты с голосом и памятью, лендинги и веб-приложения. Запуск за дни.">
-<meta property="og:title" content="gohachad — автоматизация и сайты для малого бизнеса">
-<meta property="og:description" content="AI-агенты для продаж, переговоров и поддержки — плюс сайты, на которых они живут. Для малого бизнеса, с запуском за дни.">
+<title>gohachad — automation and websites for small business</title>
+<meta name="description" content="I automate small businesses and build the sites that run them: AI agents for sales and negotiation, Telegram assistants with voice and memory, landing pages and web apps. Live in days.">
+<meta property="og:title" content="gohachad — automation and websites for small business">
+<meta property="og:description" content="AI agents for sales, negotiation, and support — plus the websites they live on. Built for small business, live in days.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23fbe1d1'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%2317191c'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,20 +40,20 @@
 }
 
 /* ---------- Dark Mode Variables ---------- */
-/* Добавлены новые переменные для темной темы */
+/* New variables for the dark theme */
 body.dark-mode {
-  --color-ink-black:#ffffff; /* Текст становится белым */
-  --color-paper-white:#17191c; /* Фон становится темным */
-  --color-mist-gray:#242628; /* Серые элементы становятся темнее */
-  --color-fog-white:#1e2022; /* Светлые фоны тоже темнее */
-  --color-slate-gray:#a3a6af; /* Серые тексты становятся светлее */
-  --color-ash-gray:#979799;   /* Другие оттенки серого */
-  --color-smoke-gray:#777b86; /* Ещё оттенки серого */
-  --color-sienna-brown:#fbe1d1; /* Коричневый цвет акцентов становится светлее */
-  --color-blush-peach:#2b201a; /* Фон акцентной карточки: тёплый тёмный, чтобы peach-текст читался */
-  --border-hairline:#333537; /* Границы становятся темнее */
+  --color-ink-black:#ffffff; /* Text turns white */
+  --color-paper-white:#17191c; /* Background turns dark */
+  --color-mist-gray:#242628; /* Gray elements go darker */
+  --color-fog-white:#1e2022; /* Light backgrounds go darker too */
+  --color-slate-gray:#a3a6af; /* Gray text goes lighter */
+  --color-ash-gray:#979799;   /* Other shades of gray */
+  --color-smoke-gray:#777b86; /* More shades of gray */
+  --color-sienna-brown:#fbe1d1; /* Accent brown goes lighter */
+  --color-blush-peach:#2b201a; /* Accent card background: warm dark so the peach text stays readable */
+  --border-hairline:#333537; /* Borders go darker */
 }
-/* В тёмной теме линия графика перекрашивается в светлый акцент */
+/* In dark mode the chart line is repainted in the light accent */
 body.dark-mode .stat__chart path{stroke:var(--color-sienna-brown)}
 
 *{margin:0;padding:0;box-sizing:border-box}
@@ -114,8 +114,8 @@ a{color:inherit}
 }
 
 /* ---------- Theme Toggle Button (Ἥλιος / Σελήνη) ---------- */
-/* Кнопка темы в футере: солнце — Вергинская звезда (Гелиос), луна — полумесяц Селены.
-   Кнопка показывает тему, НА которую переключит. */
+/* Theme button in the footer: the sun is the Vergina Star (Helios), the moon is Selene's crescent.
+   The button shows the theme it will switch TO. */
 .theme-toggle-button {
   background: none;
   border: 1px solid transparent;
@@ -149,7 +149,7 @@ a{color:inherit}
   stroke: currentColor;
   fill: none;
 }
-/* Светлая тема: предлагаем Селену; тёмная: предлагаем Гелиоса */
+/* Light theme: offer Selene; dark theme: offer Helios */
 .theme-set--helios { display: none; }
 body.dark-mode .theme-set--helios { display: inline-flex; }
 body.dark-mode .theme-set--selene { display: none; }
@@ -336,32 +336,32 @@ body.dark-mode .theme-set--selene { display: none; }
 <body>
 
 <header class="container">
-  <nav class="nav" aria-label="Основная навигация">
-    <!-- Кнопка переключения темы будет добавлена в футер -->
+  <nav class="nav" aria-label="Main navigation">
+    <!-- The theme toggle button is added to the footer -->
     <a class="nav__logo" href="#">gohachad</a>
     <ul class="nav__links">
-      <li><a href="#services">Услуги</a></li>
-      <li><a href="#projects">Проекты</a></li>
-      <li><a href="#contact">Контакты</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav__cta">
       <a class="arrow-link nav__email" href="mailto:gchad5307@gmail.com">Email</a>
-      <a class="pill pill--filled" href="https://t.me/gohachad">Написать в Telegram</a>
+      <a class="pill pill--filled" href="https://t.me/gohachad">Message on Telegram</a>
     </div>
   </nav>
 </header>
 
 <main>
   <!-- ================= HERO ================= -->
-  <section class="hero container" aria-label="Главный экран">
+  <section class="hero container" aria-label="Hero">
     <div class="hero__inner">
-      <h1>Клиент написал в&nbsp;полночь. Агент <em>уже ответил</em>.</h1>
-      <p class="hero__sub">Я строю AI-агентов для малого бизнеса: продажи, переговоры и поддержка —
-        в&nbsp;Telegram и на сайте. А&nbsp;ещё собираю сами сайты, на&nbsp;которых эти агенты живут.
-        Под ваши процессы, с&nbsp;голосом и памятью. Запуск за дни, а не месяцы.</p>
+      <h1>A customer messaged at&nbsp;midnight. The agent <em>already replied</em>.</h1>
+      <p class="hero__sub">I build AI agents for small business: sales, negotiation, and support —
+        in&nbsp;Telegram and on your site. I also build the websites those agents live on.
+        Tuned to your workflow, with voice and memory. Live in days, not months.</p>
       <div class="hero__actions">
-        <a class="pill pill--filled" href="https://t.me/gohachad">Обсудить задачу</a>
-        <a class="pill pill--ghost" href="#services">Смотреть услуги</a>
+        <a class="pill pill--filled" href="https://t.me/gohachad">Discuss your project</a>
+        <a class="pill pill--ghost" href="#services">See services</a>
       </div>
     </div>
 
@@ -369,20 +369,20 @@ body.dark-mode .theme-set--selene { display: none; }
       <!-- Chat fragment -->
       <div class="artifact artifact--abs artifact--chat" aria-hidden="true">
         <div class="artifact__meta">
-          <span class="avatar avatar--green">ИК</span>
-          <span>Клиент</span>
+          <span class="avatar avatar--green">JD</span>
+          <span>Customer</span>
           <time>00:14</time>
         </div>
-        <p class="bubble bubble--client">А можно доставку завтра к 9:00?</p>
-        <p class="bubble bubble--agent">Да, завтра к 9:00 свободно. Оформить на адрес из прошлого заказа?</p>
-        <p class="artifact__note">Агент · ответ за 40 секунд</p>
+        <p class="bubble bubble--client">Can I get delivery tomorrow by 9 AM?</p>
+        <p class="bubble bubble--agent">Yes, tomorrow at 9 AM is open. Ship it to the address from your last order?</p>
+        <p class="artifact__note">Agent · replied in 40 seconds</p>
       </div>
 
       <!-- Stat card -->
       <div class="artifact artifact--abs artifact--stat" aria-hidden="true">
-        <p class="stat__label">Заявки за неделю</p>
+        <p class="stat__label">Leads this week</p>
         <p class="stat__value">128</p>
-        <p class="stat__delta">↑ 3,2× после запуска агента</p>
+        <p class="stat__delta">↑ 3.2× since launching the agent</p>
         <svg class="stat__chart" viewBox="0 0 240 64" fill="none">
           <path d="M2 56 C 40 52, 70 48, 96 44 S 150 30, 180 22 S 220 10, 238 6"
                 stroke="#5d2a1a" stroke-width="2" stroke-linecap="round"/>
@@ -402,13 +402,13 @@ body.dark-mode .theme-set--selene { display: none; }
           </span>
           <span class="voice__dur">0:19</span>
         </div>
-        <p class="artifact__note">Голосовое распознано → заявка в CRM</p>
+        <p class="artifact__note">Voice note transcribed → lead in CRM</p>
       </div>
 
       <!-- Composer -->
       <div class="artifact artifact--abs artifact--composer" aria-hidden="true">
         <div class="composer">
-          <span class="composer__field">Спросите что-нибудь…</span>
+          <span class="composer__field">Ask anything…</span>
           <span class="composer__send">↑</span>
         </div>
       </div>
@@ -418,60 +418,60 @@ body.dark-mode .theme-set--selene { display: none; }
   <!-- ================= SERVICES ================= -->
   <section class="section section--fog" id="services">
     <div class="container">
-      <h2>Что я делаю</h2>
-      <p class="section__sub">Два направления: автоматизация процессов агентами и сайты под них.
-        Каждый агент — не «чат-бот вообще», а сотрудник с одной понятной работой;
-        каждый сайт — под конкретную задачу.</p>
+      <h2>What I do</h2>
+      <p class="section__sub">Two things: automating your processes with agents, and building the sites they run on.
+        Every agent is an employee with one clear job — not a generic chatbot;
+        every site is built for one specific purpose.</p>
 
       <div class="cards">
         <article class="card">
-          <p class="card__tag">Продажи</p>
-          <h3 class="card__title">AI-агент для продаж</h3>
-          <p class="card__body">Квалифицирует лиды, отвечает на вопросы о товаре и доводит до заявки.
-            <span>Работает круглосуточно, ни один запрос не остаётся без ответа.</span></p>
+          <p class="card__tag">Sales</p>
+          <h3 class="card__title">AI sales agent</h3>
+          <p class="card__body">Qualifies leads, answers product questions, and carries them through to a request.
+            <span>Works around the clock, so no inquiry ever goes unanswered.</span></p>
         </article>
 
         <article class="card">
-          <p class="card__tag">Переговоры</p>
-          <h3 class="card__title">Ассистент переговоров</h3>
-          <p class="card__body">Готовит к встрече: аргументы, сценарии, ответы на возражения.
-            <span>Разбирает записи прошедших звонков и подсказывает, что улучшить.</span></p>
+          <p class="card__tag">Negotiation</p>
+          <h3 class="card__title">Negotiation assistant</h3>
+          <p class="card__body">Preps you for the meeting: talking points, scenarios, and objection handling.
+            <span>Reviews past call recordings and flags what to improve.</span></p>
         </article>
 
         <article class="card">
-          <p class="card__tag">Каналы</p>
-          <h3 class="card__title">Telegram-ассистенты</h3>
-          <p class="card__body">Бот с памятью и характером: понимает голосовые сообщения и отвечает текстом или голосом.
-            <span>Один агент — в Telegram, WhatsApp и на сайте.</span></p>
+          <p class="card__tag">Channels</p>
+          <h3 class="card__title">Telegram assistants</h3>
+          <p class="card__body">A bot with memory and personality: it understands voice messages and replies by text or voice.
+            <span>One agent across Telegram, WhatsApp, and your website.</span></p>
         </article>
 
         <article class="card">
-          <p class="card__tag">Операции</p>
-          <h3 class="card__title">Автоматизация рутины</h3>
-          <p class="card__body">Документы, отчёты, письма, заполнение CRM — то, что съедает часы каждую неделю.
-            <span>Агент делает это фоном, вы только проверяете.</span></p>
+          <p class="card__tag">Operations</p>
+          <h3 class="card__title">Busywork automation</h3>
+          <p class="card__body">Documents, reports, emails, CRM data entry — the stuff that eats hours every week.
+            <span>The agent handles it in the background; you just review.</span></p>
         </article>
 
         <article class="card">
-          <p class="card__tag">Ассистент</p>
-          <h3 class="card__title">Персональный бизнес-ассистент</h3>
-          <p class="card__body">Ваш агент на собственном сервере: помнит контекст, понимает и отвечает голосом,
-            ведёт задачи по расписанию, работает с почтой и документами.
-            <span>Один помощник для рутины, который всегда под рукой в Telegram.</span></p>
+          <p class="card__tag">Assistant</p>
+          <h3 class="card__title">Personal business assistant</h3>
+          <p class="card__body">Your own agent on your own server: it remembers context, understands and answers by voice,
+            runs tasks on a schedule, and works with your email and documents.
+            <span>One assistant for the day-to-day, always a message away in Telegram.</span></p>
         </article>
 
         <article class="card">
-          <p class="card__tag">Сайты</p>
-          <h3 class="card__title">Создание сайтов</h3>
-          <p class="card__body">Лендинги и веб-приложения под задачу: быстрые, лёгкие, без лишних систем.
-            <span>Собираю сайт, на котором живёт ваш агент — от идеи до запуска на своём домене.</span></p>
+          <p class="card__tag">Websites</p>
+          <h3 class="card__title">Website creation</h3>
+          <p class="card__body">Landing pages and web apps built for the job: fast, lightweight, no bloated stack.
+            <span>I build the site your agent lives on — from idea to launch on your own domain.</span></p>
         </article>
 
         <article class="card">
-          <p class="card__tag">Внедрение</p>
-          <h3 class="card__title">Аудит и сопровождение</h3>
-          <p class="card__body">Разбираю ваши процессы, выбираю модели под бюджет, запускаю и обучаю команду.
-            <span>Дальше — поддержка и развитие агента по мере роста.</span></p>
+          <p class="card__tag">Rollout</p>
+          <h3 class="card__title">Audit and support</h3>
+          <p class="card__body">I map your processes, pick models that fit your budget, launch, and train your team.
+            <span>After that: ongoing support and growing the agent as you scale.</span></p>
         </article>
       </div>
     </div>
@@ -481,9 +481,9 @@ body.dark-mode .theme-set--selene { display: none; }
   <section class="section">
     <div class="container">
       <div class="accent-card">
-        <p>Малому бизнесу не нужен отдел разработки, чтобы работать как большая компания.
-          Нужен один агент, собранный под ваши процессы.</p>
-        <cite>— принцип, с которого начинается каждый проект</cite>
+        <p>A small business doesn't need a whole dev team to run like a big company.
+          It needs one agent, built around your processes.</p>
+        <cite>— the principle every project starts from</cite>
       </div>
     </div>
   </section>
@@ -491,21 +491,21 @@ body.dark-mode .theme-set--selene { display: none; }
   <!-- ================= PROJECTS ================= -->
   <section class="section section--fog" id="projects">
     <div class="container">
-      <h2>Проекты</h2>
-      <p class="section__sub">Клиентские кейсы по двум направлениям появятся здесь по мере завершения.
-        Живое демо можно посмотреть уже сейчас.</p>
+      <h2>Projects</h2>
+      <p class="section__sub">Client case studies from both sides of the work will land here as they wrap.
+        A live demo is available right now.</p>
 
       <div class="projects">
         <article class="project project--empty">
-          <p class="project__status">Веб-проекты</p>
-          <p class="project__body">Первые сайты и веб-приложения скоро будут здесь.
-            Хотите увидеть, как я собираю сайт под задачу — напишите в Telegram.</p>
+          <p class="project__status">Web projects</p>
+          <p class="project__body">The first sites and web apps are coming soon.
+            Want to see how I build a site around a task? Message me on Telegram.</p>
         </article>
 
         <article class="project project--empty">
-          <p class="project__status">Автоматизация</p>
-          <p class="project__body">Кейсы агентов для продаж, переговоров и рутины — в работе.
-            Покажу живое демо и разберу вашу задачу по запросу.</p>
+          <p class="project__status">Automation</p>
+          <p class="project__body">Case studies for sales, negotiation, and busywork agents are in progress.
+            I'll walk you through a live demo and your use case on request.</p>
         </article>
       </div>
     </div>
@@ -514,33 +514,33 @@ body.dark-mode .theme-set--selene { display: none; }
   <!-- ================= CONTACT ================= -->
   <section class="section contact" id="contact">
     <div class="container">
-      <h2>Расскажите, что отнимает время</h2>
-      <p class="section__sub">Опишите задачу своими словами — отвечу, можно ли её отдать агенту,
-        сколько это займёт и что для этого нужно.</p>
+      <h2>Tell me what's eating your time</h2>
+      <p class="section__sub">Describe the task in your own words, and I'll tell you whether an agent can take it over,
+        how long it'll take, and what it needs.</p>
       <div class="contact__actions">
-        <a class="pill pill--filled" href="https://t.me/gohachad">Обсудить задачу</a>
-        <a class="pill pill--ghost" href="mailto:gchad5307@gmail.com">Написать на почту</a>
+        <a class="pill pill--filled" href="https://t.me/gohachad">Discuss your project</a>
+        <a class="pill pill--ghost" href="mailto:gchad5307@gmail.com">Send an email</a>
       </div>
-      <p class="contact__email">или напрямую: <a href="mailto:gchad5307@gmail.com">gchad5307@gmail.com</a></p>
+      <p class="contact__email">or reach me directly: <a href="mailto:gchad5307@gmail.com">gchad5307@gmail.com</a></p>
     </div>
   </section>
 </main>
 
 <footer class="container footer">
-  <span>© 2026 gohachad · Автоматизация и сайты для малого бизнеса</span>
+  <span>© 2026 gohachad · Automation and websites for small business</span>
   <span><a href="https://t.me/gohachad">Telegram</a> · <a href="mailto:gchad5307@gmail.com">Email</a></span>
-  <!-- Кнопка переключения темы добавлена сюда -->
+  <!-- The theme toggle button is added here -->
 </footer>
 
-<!-- Скрипт для переключения темы -->
+<!-- Theme toggle script -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // Создаем кнопку переключения темы
+    // Create the theme toggle button
     const toggleButton = document.createElement('button');
     toggleButton.classList.add('theme-toggle-button'); // Class for styling
-    toggleButton.setAttribute('aria-label', 'Сменить тему');
+    toggleButton.setAttribute('aria-label', 'Switch theme');
 
-    // Гелиос — Вергинская звезда (16-лучевое солнце Македонии), знак светлой темы
+    // Helios — the Vergina Star (the 16-ray sun of Macedon), the mark of the light theme
     const heliosSet = `
         <span class="theme-set theme-set--helios">
           <svg class="theme-glyph" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
@@ -557,7 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <span class="theme-word" lang="grc">Ἥλιος</span>
         </span>
     `;
-    // Селена — полумесяц, знак тёмной темы
+    // Selene — the crescent, the mark of the dark theme
     const seleneSet = `
         <span class="theme-set theme-set--selene">
           <svg class="theme-glyph" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -567,43 +567,43 @@ document.addEventListener('DOMContentLoaded', () => {
         </span>
     `;
 
-    // Кнопка показывает тему, НА которую переключит (в светлой — Селену, в тёмной — Гелиоса)
+    // The button shows the theme it will switch TO (in light mode — Selene, in dark mode — Helios)
     toggleButton.innerHTML = heliosSet + seleneSet;
-    // Добавляем кнопку в конец футера
+    // Append the button to the end of the footer
     document.querySelector('footer').appendChild(toggleButton);
 
     const body = document.body;
-    const savedMode = localStorage.getItem('theme-mode'); // Пытаемся получить сохраненный режим
-    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)'); // Проверяем системные настройки
+    const savedMode = localStorage.getItem('theme-mode'); // Try to read the saved mode
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)'); // Check the system setting
 
-    // Функция для применения выбранного режима
-    // Видимость Гелиоса/Селены переключается через CSS по классу body.dark-mode
+    // Apply the chosen mode
+    // Helios/Selene visibility is toggled via CSS off the body.dark-mode class
     const applyMode = (mode) => {
         if (mode === 'dark') {
             body.classList.add('dark-mode');
             localStorage.setItem('theme-mode', 'dark');
-            toggleButton.setAttribute('aria-label', 'Переключить на светлую тему (Ἥλιος)');
+            toggleButton.setAttribute('aria-label', 'Switch to light theme (Ἥλιος)');
         } else {
             body.classList.remove('dark-mode');
             localStorage.setItem('theme-mode', 'light');
-            toggleButton.setAttribute('aria-label', 'Переключить на тёмную тему (Σελήνη)');
+            toggleButton.setAttribute('aria-label', 'Switch to dark theme (Σελήνη)');
         }
     };
 
-    // Устанавливаем начальный режим при загрузке страницы
+    // Set the initial mode on page load
     if (savedMode) {
-        applyMode(savedMode); // Используем сохраненный режим, если он есть
+        applyMode(savedMode); // Use the saved mode if there is one
     } else if (prefersDarkScheme.matches) {
-        applyMode('dark'); // Используем системные настройки, если они темные
+        applyMode('dark'); // Use the system setting if it's dark
     } else {
-        applyMode('light'); // По умолчанию светлая тема
+        applyMode('light'); // Default to the light theme
     }
 
-    // Обработчик события клика по кнопке
+    // Click handler for the button
     toggleButton.addEventListener('click', () => {
-        // Определяем новый режим
+        // Determine the new mode
         const newMode = body.classList.contains('dark-mode') ? 'light' : 'dark';
-        applyMode(newMode); // Применяем новый режим
+        applyMode(newMode); // Apply the new mode
     });
 });
 </script>
