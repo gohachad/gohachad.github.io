@@ -332,6 +332,9 @@ body.dark-mode .theme-set--selene { display: none; }
 .project__title{font-size:26px;font-weight:480;letter-spacing:-.23px}
 .project__body{font-size:16px;line-height:1.5}
 .project__stack{font-size:14px;color:var(--color-slate-gray);margin-top:auto;padding-top:12px}
+.project__list{list-style:none;padding:0;display:grid;gap:8px;font-size:16px;line-height:1.45}
+.project__list li{position:relative;padding-left:20px}
+.project__list li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--color-ash-gray)}
 .project__stack a{color:inherit;text-decoration:none}
 .project__stack a:hover{text-decoration:underline}
 .project__shot{display:block;border-radius:12px;overflow:hidden;border:1px solid var(--border-hairline);margin-bottom:10px}
@@ -487,7 +490,15 @@ body.dark-mode .theme-set--selene { display: none; }
           </a>
           <p class="project__status">Website</p>
           <h3 class="project__title">Buena Vista</h3>
-          <p class="project__body">Halal Mexican restaurant in Bonnevoie, Luxembourg. A site built around their sunset-postcard brand, on their own domain, with a table booking form that lands straight in the owner's inbox.</p>
+          <ul class="project__list">
+            <li>Design built around the restaurant's own sunset-postcard brand</li>
+            <li>Live table booking form, delivered to the owner's email automatically</li>
+            <li>Spam protection on the form</li>
+            <li>Open / closed status that updates with their opening hours</li>
+            <li>Menu and details checked against their Google and Wolt listings</li>
+            <li>Light and dark themes</li>
+            <li>Own domain with HTTPS</li>
+          </ul>
           <p class="project__stack"><a href="https://www.buenavista-lux.com" target="_blank" rel="noopener">buenavista-lux.com &#8599;</a></p>
         </article>
 
@@ -497,7 +508,15 @@ body.dark-mode .theme-set--selene { display: none; }
           </a>
           <p class="project__status">Website + automation</p>
           <h3 class="project__title">getcard</h3>
-          <p class="project__body">A VISA card service for Kyrgyzstan. A two-language site plus an order pipeline: application form, document checks, and a Telegram bot where each order gets approved.</p>
+          <ul class="project__list">
+            <li>Site in two languages, Russian and English</li>
+            <li>Order flow with no accounts: each order gets a tracking code</li>
+            <li>Automatic checks of uploaded document photos</li>
+            <li>Application form pre-filled from document scans</li>
+            <li>Finished application generated as a PDF</li>
+            <li>Telegram bot where every order is reviewed and approved</li>
+            <li>Own domain and server, plus a company mailbox on it</li>
+          </ul>
           <p class="project__stack"><a href="https://getcard.kg" target="_blank" rel="noopener">getcard.kg &#8599;</a></p>
         </article>
       </div>
